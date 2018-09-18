@@ -1,0 +1,23 @@
+{
+  "name": "https-proxydemo",
+  "version": "",
+  "description": "",
+  "author": {
+    "name": "caoke",
+    "email": ""
+  },
+  "private": true,
+  "scripts": {
+    "dev": "set PORT=3000&node build/dev-server.js"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^0.18.0"
+  },
+  "devDependencies": {
+    "express": "^4.16.3"
+  }
+}
