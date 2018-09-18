@@ -8,13 +8,14 @@
   },
   "private": true,
   "scripts": {
-    "dev": "set PORT=3000&node build/dev-server.js"
+    "dev": "set PORT=80&node build/dev-server.js"
   },
   "engines": {
     "node": ">= 6.0.0",
     "npm": ">= 3.0.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "http-proxy-middleware": "^0.18.0"
   },
   "devDependencies": {

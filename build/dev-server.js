@@ -4,50 +4,13 @@ const express = require('express');
 // default port where dev server listens for incoming traffic
 const port = process.env.PORT || 80;
 
-const mockArr = require("../mock/index.js");
 
-const mockUrl = {}
-mockArr.forEach(function(item) {
-	Object.assign(mockUrl, item)
-})
-var bodyParser = require('body-parser');
 
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
-
-
-const list = []
-if(mockArr.length) {
-	var urlMock = mockArr[0]
-	Object.keys(urlMock).forEach(function(url) {
-		var mock = urlMock[url];
-		list.push({
-			key: url,
-			value: mock,
-		})
-	})
-}
 
 
 const fs = require("fs")
-const rewrite = require("./rewrite")
-Object.keys(mockUrl).forEach(function(url) {
-	var mock = mockUrl[url];
 
-    var filepath = path.join(__dirname, "../mock" + mock)
-    if(fs.existsSync(filepath)) {
-        app.use(url, function(req, res, next) {
-            res.jsonp(JSON.parse(fs.readFileSync(filepath).toString()))
-        });
-    } else {
-        app.use(rewrite(url, mock));
-    }
-
-});
 
 app.use("/", express.static(__dirname+'/../../dist'));
 
@@ -67,10 +30,8 @@ function getIPAdress() {
 
 const readyPromise = new Promise(resolve => {
 
-    if(port!==80){
-        var uri = 'http://' + getIPAdress() + ':' + port;
-        console.log('> Listening at ' + uri + '\n');
-	}
+    var uri = 'http://' + getIPAdress() + ':' + port;
+    console.log('> Listening at ' + uri + '\n');
 
 });
 var http = require('http');
