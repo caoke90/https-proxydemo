@@ -12,7 +12,8 @@ const app = express();
 const fs = require("fs")
 
 
-app.use("/", express.static(__dirname+'/../../dist'));
+app.use("/", express.static(__dirname+'/../../zx-frontend/dist'));
+app.use("/", express.static(__dirname+'/../../frontend/dist'));
 
 function getIPAdress() {
     var interfaces = require('os').networkInterfaces();
